@@ -3,6 +3,6 @@
 
 ***
 #### Notes
-TF_LOG=debug terraform apply -var-file="poc.tfvars"
-az webapp list-runtimes --linux
+* To run: TF_LOG=debug terraform apply -var-file="poc.tfvars"
+* az webapp list-runtimes --linux
 
