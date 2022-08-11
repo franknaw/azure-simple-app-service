@@ -92,7 +92,7 @@ module "vnet" {
 }
 
 /*
-Create a web app service plan.data.
+Create a web app service plan.
 An App Service plan defines a set of compute resources for a web app to run.
 These compute resources are analogous to the server farm in conventional web hosting. 
 One or more apps can be configured to run on the same computing resources (or in the same App Service plan).
