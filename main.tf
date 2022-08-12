@@ -119,11 +119,31 @@ resource "azurerm_linux_web_app" "web-app-node" {
   https_only          = true
 
   site_config {
-    minimum_tls_version = "1.2"
+
     always_on           = false
+    ftps_state = "Disabled"
+    health_check_eviction_time_in_min = 10
+    health_check_path = "/"
+    http2_enabled = false
+    ip_restriction = tolist([])
+    load_balancing_mode = "LeastRequests"
+    local_mysql_enabled = false
+    managed_pipeline_mode = "Integrated"
+    minimum_tls_version = "1.2"
+    remote_debugging_enabled = false
+    remote_debugging_version = "VS2019"
+    scm_ip_restriction = tolist([])
+    scm_minimum_tls_version = "1.2"
+    scm_use_main_ip_restriction = false
+    use_32_bit_worker = true
+    vnet_route_all_enabled = false
+    websockets_enabled = false
+    worker_count = 1
+
     application_stack {
       node_version = "16-lts"
     }
+
   }
 
   logs {
@@ -173,6 +193,9 @@ resource "azurerm_linux_web_app_slot" "slot-1" {
     application_stack {
       node_version = "16-lts"
     }
+
+    health_check_eviction_time_in_min = 10
+    health_check_path                 = "/"
   }
 
   logs {
@@ -205,7 +228,8 @@ resource "azurerm_app_service_source_control_slot" "staging-source" {
 /*
 This allows the app service to connect to GitHub via OAuth Token
 */
-resource "azurerm_source_control_token" "sc-token" {
-  type  = "GitHub"
-  token = "AZUREAPPSERVICE_PUBLISHPROFILE_B2DF17BDEDB84EBDB0A136CDEE0403B7"
-}
+# resource "azurerm_source_control_token" "sc-token" {
+#   type  = "GitHub"
+#   token = "FRANKNAW2"
+#   # token = "AZUREAPPSERVICE_PUBLISHPROFILE_B2DF17BDEDB84EBDB0A136CDEE0403B7"
+# }
